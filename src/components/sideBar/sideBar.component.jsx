@@ -1,6 +1,6 @@
 import React from "react";
 
-const SideBar = () => (
+const SideBar = ({ onButtonClick }) => (
     <aside className="side-bar">
     <ul>
         <button onClick={() => onButtonClick("inbox")}>Inbox</button>

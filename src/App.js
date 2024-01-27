@@ -1,11 +1,31 @@
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import "./App.css";
 import Column from "./components/column/column.component";
 import Sidebar from "./components/sideBar/sideBar.component";
 import SearchBar from "./components/searchBar/searchBar.component";
 import EmailList from "./components/emailList/emailList.component";
-import EmailBody from "./components/emailBody/emailBody.component";
+import Email from "./components/email/email.component";
 
 function App() {
+	const [view, setView] = useState("inbox");
+	const [emails, setEmails] = useState([]);
+
+	const onButtonClick = (view) => {
+		setView(view);
+	};
+
+	useEffect(() => {
+		const fetchEmails = async () => {
+			const response = await axios(
+				"https://gist.githubusercontent.com/mrchenliang/15e1989583fd6e6e04e1c49287934c91/raw/ed03cfea1e2edb0303543d2908cd7429ed75580d/email.json"
+			);
+			const data = await response.json();
+			setEmails(data);
+		}
+		fetchEmails();
+	});
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -13,47 +33,20 @@ function App() {
 			</header>
 			<main>
 				<Column className="App-sidebar">
-					<Sidebar />
+					<Sidebar onButtonClick={onButtonClick} />
 				</Column>
 				<Column className="App-email-index">
 					<SearchBar
 						placeholder="Search for emails"
 						handleChange={(e) => console.log(e.target.value)}
 					/>
-					<EmailList
-						emails={[
-							{
-								id: 1,
-								from: "Joe",
-								subject: "Hello",
-								address: "address",
-								timestamp: "timestamp"
-							},
-							{
-								id: 2,
-								from: "Joe",
-								subject: "Hello",
-								address: "address",
-								timestamp: "timestamp"
-							},
-							{
-								id: 3,
-								from: "Joe",
-								subject: "Hello",
-								address: "address",
-								timestamp: "timestamp"
-							}
-						]}
+					<EmailList view={view}
+						emails={[]}
 					/>
 				</Column>
 				<Column className="App-email-body">
-					<EmailBody>
-						from: "Joe",
-						subject: "Hello",
-						address: "address",
-						timestamp: "timestamp",
-						message: "message"
-					</EmailBody>
+					<Email>
+					</Email>
 				</Column>
 			</main>
 			<footer>
