@@ -1,7 +1,7 @@
 import "./App.css";
 import Column from "./components/column/column.component";
-import EmailSidebar from "./components/email-sidebar/email-sidebar.component";
-import EmailContent from "./components/email-content/email-content.component";
+import Sidebar from "./components/email-sidebar/sidebar.component";
+import Content from "./components/email-content/email-content.component";
 import SearchBar from "./components/searchbar/searchbar.component";
 import EmailList from "./components/email-list/email-list.component";
 import EmailBody from "./components/email-body/email-body.component";
@@ -13,13 +13,10 @@ function App() {
 				<h1>Really Cool Email Client</h1>
 			</header>
 			<main>
-				<aside className="sidebar">
-					<ul>
-						<li>Inbox</li>
-						<li>Trash</li>
-					</ul>
+				<aside className="App-sidebar">
+					<Sidebar />
 				</aside>
-				<section className="email-index">
+				<section className="App-email-index">
 					<SearchBar
 						placeholder="Search for emails"
 						handleChange={(e) => console.log(e.target.value)}
@@ -50,7 +47,7 @@ function App() {
 						]}
 					/>
 				</section>
-				<section className="email-body">
+				<section className="App-email-body">
 					from: "Joe",
 					subject: "Hello",
 					address: "address",
