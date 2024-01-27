@@ -1,5 +1,5 @@
 import React from "react";
-import Email from "../email/email.component";
+import Email from "../emailBody/emailBody.component";
 
 const EmailList = ({ emails }) => (
     <div className="email-list">

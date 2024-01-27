@@ -1,9 +1,9 @@
 import React from "react";
-import "./searchbar.styles.css";
+import "./searchBar.styles.css";
 
 const SearchBar = ({ placeholder, handleInput }) => (
     <input
-        className="search"
+        className="search-bar"
         type="search"
         placeholder={placeholder}
         onChange={handleInput}

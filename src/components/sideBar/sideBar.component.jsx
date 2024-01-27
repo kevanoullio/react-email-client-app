@@ -1,7 +1,7 @@
 import React from "react";
 
-const Sidebar = () => (
-    <aside className="sidebar">
+const SideBar = () => (
+    <aside className="side-bar">
     <ul>
         <button onClick={() => onButtonClick("inbox")}>Inbox</button>
         <button onClick={() => onButtonClick("trash")}>Trash</button>
@@ -9,4 +9,4 @@ const Sidebar = () => (
     </aside>
 );
 
-export default Sidebar;
+export default SideBar;

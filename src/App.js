@@ -1,10 +1,9 @@
 import "./App.css";
 import Column from "./components/column/column.component";
-import Sidebar from "./components/email-sidebar/sidebar.component";
-import Content from "./components/email-content/email-content.component";
-import SearchBar from "./components/searchbar/searchbar.component";
-import EmailList from "./components/email-list/email-list.component";
-import EmailBody from "./components/email-body/email-body.component";
+import Sidebar from "./components/sideBar/sideBar.component";
+import SearchBar from "./components/searchBar/searchBar.component";
+import EmailList from "./components/emailList/emailList.component";
+import EmailBody from "./components/emailBody/emailBody.component";
 
 function App() {
 	return (
