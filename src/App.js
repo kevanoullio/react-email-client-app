@@ -16,36 +16,35 @@ function App() {
 					<Sidebar />
 				</Column>
 				<Column className="App-email-index">
-					<EmailIndex />
-						<SearchBar
-							placeholder="Search for emails"
-							handleChange={(e) => console.log(e.target.value)}
-						/>
-						<EmailList
-							emails={[
-								{
-									id: 1,
-									from: "Joe",
-									subject: "Hello",
-									address: "address",
-									timestamp: "timestamp"
-								},
-								{
-									id: 2,
-									from: "Joe",
-									subject: "Hello",
-									address: "address",
-									timestamp: "timestamp"
-								},
-								{
-									id: 3,
-									from: "Joe",
-									subject: "Hello",
-									address: "address",
-									timestamp: "timestamp"
-								}
-							]}
-						/>
+					<SearchBar
+						placeholder="Search for emails"
+						handleChange={(e) => console.log(e.target.value)}
+					/>
+					<EmailList
+						emails={[
+							{
+								id: 1,
+								from: "Joe",
+								subject: "Hello",
+								address: "address",
+								timestamp: "timestamp"
+							},
+							{
+								id: 2,
+								from: "Joe",
+								subject: "Hello",
+								address: "address",
+								timestamp: "timestamp"
+							},
+							{
+								id: 3,
+								from: "Joe",
+								subject: "Hello",
+								address: "address",
+								timestamp: "timestamp"
+							}
+						]}
+					/>
 				</Column>
 				<Column className="App-email-body">
 					<EmailBody>
