@@ -9,7 +9,8 @@
 button {
     display: flex;
     flex-direction: column;
-    width: 5vw;
+    align-items: center;
+    width: 100%;
     height: auto;
     padding: 10px;
     margin: 10px;

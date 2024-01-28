@@ -4,4 +4,24 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px; */
+    padding: 10px;
+    margin: 10px;
+}
+
+#email-details {
+    display: block;
+    font-size: 16px;
+}
+
+#email-from,
+#email-subject,
+#email-address,
+#email-timestamp {
+    display: block;
+    font-weight: 600;
+}
+
+.email-message {
+    font-size: 14px;
+    font-weight: 400;
 }

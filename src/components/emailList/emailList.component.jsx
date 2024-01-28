@@ -8,6 +8,9 @@ const EmailList = ({ emails, view }) => {
     }
 
     const filteredEmails = emails.filter(email => email.deleted === (view === "inbox" ? false : true));
+    console.log("Filtered emails:", filteredEmails);
+    console.log("Emails:", emails);
+    console.log("View:", view);
 
     return (
         <div className="email-list">
@@ -16,7 +19,6 @@ const EmailList = ({ emails, view }) => {
             ))}
         </div>
     );
-}
-    
+} 
 
 export default EmailList;
