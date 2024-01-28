@@ -1,7 +1,8 @@
 import React from "react";
+import "./column.styles.css";
 
-const Column = ({ children }) => (
-    <section className="column">
+const Column = ({ className, children }) => (
+    <section className={className}>
         {children}
     </section>
 );

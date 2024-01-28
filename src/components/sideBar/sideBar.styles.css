@@ -1,5 +1,21 @@
 .side-bar {
-    width: 10vw;
+    /* display: flex;
+	flex-direction: row; */
+    /* width: 2vw; */
+    /* padding: 10px; */
+    /* margin: 30px; */
+}
+
+button {
+    display: flex;
+    flex-direction: column;
+    width: 5vw;
+    height: auto;
     padding: 10px;
-    margin: 30px;
+    margin: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }

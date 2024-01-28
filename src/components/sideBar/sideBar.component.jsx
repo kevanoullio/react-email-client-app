@@ -1,4 +1,5 @@
 import React from "react";
+import "./sideBar.styles.css";
 
 const SideBar = ({ onButtonClick }) => (
     <aside className="side-bar">
