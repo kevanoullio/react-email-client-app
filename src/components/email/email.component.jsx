@@ -13,7 +13,7 @@ const Email = ({ email }) => {
     }
 
     return (
-        <div id="email-item">
+        <div id="email-body-item">
             <div id="email-details">
                 <div id="email-from">From: {email.from}</div>
                 <div id="email-subject">Subject: {email.subject}</div>

@@ -21,21 +21,33 @@ function App() {
 		setSelectedEmail(email);
 	};
 
+	const deleteEmail = (id) => {
+		const updatedEmails = emails.map(email => {
+			if (email.id === id) {
+				return {
+					...email,
+					deleted: true
+				};
+			}
+			return email;
+		});
+		setEmails(updatedEmails);
+	}
+
 	useEffect(() => {
 		const fetchEmails = async () => {
 			const response = await axios(
 				"https://gist.githubusercontent.com/mrchenliang/15e1989583fd6e6e04e1c49287934c91/raw/ed03cfea1e2edb0303543d2908cd7429ed75580d/email.json"
 			);
-			// console.log(response.data);
 			const emailsWithDeleted = response.data.map(email => ({
 				...email,
-				deleted: false // Add the 'deleted' attribute here
+				deleted: false
 			}));
 			setEmails(emailsWithDeleted);
 		}
 		fetchEmails();
 	});
-	console.log("view", view);
+
 	useEffect(() => {
 		let filtered = emails;
 
@@ -68,12 +80,18 @@ function App() {
 					<Sidebar onButtonClick={onButtonClick} />
 				</section>
 				<section className="App-email-index">
-					<SearchBar className="App-search-bar"
+					<SearchBar
+						className="App-search-bar"
 						placeholder="Search for emails"
 						handleInput={handleChange}
 						handleChange={(e) => console.log(e.target.value)}
 					/>
-					<EmailList className="App-email-list" view={view} emails={filteredEmails} onSelectEmail={onSelectEmail} />
+					<EmailList 
+						className="App-email-list"
+						view={view} emails={filteredEmails}
+						onSelectEmail={onSelectEmail}
+						deleteEmail={deleteEmail}
+					/>
 				</section>
 				<section className="App-email-body">
 					<Email email={selectedEmail} />

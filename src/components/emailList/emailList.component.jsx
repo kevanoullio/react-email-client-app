@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./emailList.styles.css";
 
-const EmailList = ({ emails, view, onSelectEmail }) => {
+const EmailList = ({ emails, view, onSelectEmail, deleteEmail }) => {
     const filteredEmails = emails.filter(email => email.deleted === (view === "inbox" ? false : true));
     const [activeEmail, setActiveEmail] = useState(null);
 
@@ -18,7 +18,7 @@ const EmailList = ({ emails, view, onSelectEmail }) => {
         <div id="email-list">
             {filteredEmails.map(email => (
                 <div
-                    id="email-item"
+                    id="email-list-item"
                     key={email.id}
                     className={`email-item ${activeEmail === email.id ? "active" : ""}`}
                     onClick={() => handleClick(email)}
@@ -29,7 +29,17 @@ const EmailList = ({ emails, view, onSelectEmail }) => {
                         <div id="email-address">Address: {email.address}</div>
                         <div id="email-timestamp">Time: {email.time}</div>
                     </div>
-                    <img id="trash-can" src="/assets/icons/trash-can-icon.png" alt="trash can icon" />
+                    <img id="read" src="/assets/icons/email-read-icon.png" alt="email read icon" />
+                    <img id="unread" src="/assets/icons/email-unread-icon.png" alt="email unread icon" />
+                    <img 
+                        id="trash-can" 
+                        src="/assets/icons/trash-can-icon.png" 
+                        alt="trash can icon" 
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent triggering the email item's onClick
+                            deleteEmail(email.id);
+                        }}
+                    />
                 </div>
             ))}
         </div>
