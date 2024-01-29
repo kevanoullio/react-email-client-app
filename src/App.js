@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Column from "./components/column/column.component";
 import Sidebar from "./components/sideBar/sideBar.component";
 import SearchBar from "./components/searchBar/searchBar.component";
 import EmailList from "./components/emailList/emailList.component";
@@ -65,20 +64,20 @@ function App() {
 				<h1>Really Cool Email Client</h1>
 			</header>
 			<main>
-				<Column className="App-sidebar">
+				<section className="App-sidebar">
 					<Sidebar onButtonClick={onButtonClick} />
-				</Column>
-				<Column className="App-email-index">
+				</section>
+				<section className="App-email-index">
 					<SearchBar className="App-search-bar"
 						placeholder="Search for emails"
 						handleInput={handleChange}
 						handleChange={(e) => console.log(e.target.value)}
 					/>
 					<EmailList className="App-email-list" view={view} emails={filteredEmails} onSelectEmail={onSelectEmail} />
-				</Column>
-				<Column className="App-email-body">
+				</section>
+				<section className="App-email-body">
 					<Email email={selectedEmail} />
-				</Column>
+				</section>
 			</main>
 			<footer>
 				<p>Thank you for choosing Really Cool Email Client || 2024 &copy; Copyright</p>

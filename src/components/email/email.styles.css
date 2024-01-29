@@ -1,27 +1,16 @@
-.email {
-    /* width: 60vw;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px; */
-    padding: 10px;
-    margin: 10px;
-}
-
-#email-details {
-    display: block;
-    font-size: 16px;
-}
-
-#email-from,
-#email-subject,
-#email-address,
-#email-timestamp {
-    display: block;
+#no-email-selected {
+    font-size: 20px;
     font-weight: 600;
+    padding: 20px;
+    margin: 0 auto;
 }
 
-.email-message {
-    font-size: 14px;
-    font-weight: 400;
+#email-item {
+    padding: 20px;
+}
+
+#email-message {
+    padding: 20px;
+    margin-top: 20px;
+    border: 2px solid black;
 }

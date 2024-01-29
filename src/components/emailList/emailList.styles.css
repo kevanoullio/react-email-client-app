@@ -1,7 +1,29 @@
-.email-list {
-    /* width: 30vw;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px; */
+#email-list #email-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid black;
+}
+
+#email-details {
+    flex-grow: 1;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+img {
+    align-self: center;
+    width: 50px;
+    height: 50px;
+}
+
+#email-list #email-item:hover {
+    background-color: rgb(226, 199, 129);
+    outline: 3px solid black;
+}
+
+#email-list #email-item.active {
+    background-color: rgb(86, 207, 142);
+    outline: 3px solid black;
 }

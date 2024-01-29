@@ -9,16 +9,16 @@ const Email = ({ email }) => {
     }, [email]);
 
     if (!email) {
-        return <div>Loading...</div>;
+        return <p id="no-email-selected">No email selected yet...</p>;
     }
 
     return (
-        <div className="email">
+        <div id="email-item">
             <div id="email-details">
-                <span id="email-from">From: {email.from}</span>
-                <span id="email-subject">Subject: {email.subject}</span>
-                <span id="email-address">Address: {email.address}</span>
-                <span id="email-timestamp">Time: {email.time}</span>
+                <div id="email-from">From: {email.from}</div>
+                <div id="email-subject">Subject: {email.subject}</div>
+                <div id="email-address">Address: {email.address}</div>
+                <div id="email-timestamp">Time: {email.time}</div>
             </div>
             <p id="email-message">Message: {email.message}</p>
         </div>

@@ -1,22 +1,30 @@
 .side-bar {
-    /* display: flex;
-	flex-direction: row; */
-    /* width: 2vw; */
-    /* padding: 10px; */
-    /* margin: 30px; */
+    display: flex;
+	flex-direction: column;
+    align-items: center;
 }
 
 button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: auto;
     height: auto;
-    padding: 10px;
+    padding: 20px;
     margin: 10px;
     border: none;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: rgb(226, 199, 129);
+    outline: 3px solid black;
+}
+
+button.active {
+    background-color: rgb(86, 207, 142);
+    outline: 3px solid black;
 }
