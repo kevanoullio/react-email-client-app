@@ -18,7 +18,7 @@ header,
 footer {
 	display: flex;
     justify-content: center;
-	background-color: rgb(105 115 132);
+	background-color: rgb(108, 108, 108);
 }
 
 header {
@@ -54,7 +54,7 @@ main {
 .App-email-index {
 	flex: 4;
 	flex-direction: column;
-	background-color: grey;
+	background-color: rgb(108, 108, 108);
 }
 
 .App-email-body {

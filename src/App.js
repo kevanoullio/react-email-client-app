@@ -21,6 +21,32 @@ function App() {
 		setSelectedEmail(email);
 	};
 
+	const markAsRead = (id) => {
+		const updatedEmails = emails.map(email => {
+			if (email.id === id) {
+				return {
+					...email,
+					read: true
+				};
+			}
+			return email;
+		});
+		setEmails(updatedEmails);
+	}
+
+	const markAsUnread = (id) => {
+		const updatedEmails = emails.map(email => {
+			if (email.id === id) {
+				return {
+					...email,
+					read: false
+				};
+			}
+			return email;
+		});
+		setEmails(updatedEmails);
+	}
+
 	const deleteEmail = (id) => {
 		const updatedEmails = emails.map(email => {
 			if (email.id === id) {
@@ -34,6 +60,23 @@ function App() {
 		setEmails(updatedEmails);
 	}
 
+	const restoreEmail = (id) => {
+		const updatedEmails = emails.map(email => {
+			if (email.id === id) {
+				return {
+					...email,
+					deleted: false
+				};
+			}
+			return email;
+		});
+		setEmails(updatedEmails);
+	}
+		
+	const handleChange = e => {
+		setSearchInput(e.target.value)
+	};
+
 	useEffect(() => {
 		const fetchEmails = async () => {
 			const response = await axios(
@@ -46,7 +89,7 @@ function App() {
 			setEmails(emailsWithDeleted);
 		}
 		fetchEmails();
-	});
+	}, []);
 
 	useEffect(() => {
 		let filtered = emails;
@@ -65,10 +108,6 @@ function App() {
 
 		setFilteredEmails(filtered);
 	}, [emails, searchInput, view]);
-	
-	const handleChange = e => {
-		setSearchInput(e.target.value)
-	};
 
 	return (
 		<body>
@@ -90,7 +129,10 @@ function App() {
 						className="App-email-list"
 						view={view} emails={filteredEmails}
 						onSelectEmail={onSelectEmail}
+						markAsRead={markAsRead}
+						markAsUnread={markAsUnread}
 						deleteEmail={deleteEmail}
+						restoreEmail={restoreEmail}
 					/>
 				</section>
 				<section className="App-email-body">
