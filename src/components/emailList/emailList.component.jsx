@@ -8,6 +8,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
     const handleClick = (email) => {
         onSelectEmail(email);
         setActiveEmail(email.id);
+        markAsRead(email.id);
     };
 
     if (!emails) {

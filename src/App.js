@@ -21,30 +21,16 @@ function App() {
 		setSelectedEmail(email);
 	};
 
-	const markAsRead = (id) => {
-		const updatedEmails = emails.map(email => {
-			if (email.id === id) {
-				return {
-					...email,
-					read: true
-				};
-			}
-			return email;
-		});
-		setEmails(updatedEmails);
+	function markAsRead(emailId) {
+		setEmails(emails.map(email => 
+			email.id === emailId ? { ...email, read: true } : email
+		));
 	}
-
-	const markAsUnread = (id) => {
-		const updatedEmails = emails.map(email => {
-			if (email.id === id) {
-				return {
-					...email,
-					read: false
-				};
-			}
-			return email;
-		});
-		setEmails(updatedEmails);
+	  
+	function markAsUnread(emailId) {
+		setEmails(emails.map(email => 
+			email.id === emailId ? { ...email, read: false } : email
+		));
 	}
 
 	const deleteEmail = (id) => {
@@ -57,6 +43,7 @@ function App() {
 			}
 			return email;
 		});
+
 		setEmails(updatedEmails);
 	}
 
@@ -70,6 +57,7 @@ function App() {
 			}
 			return email;
 		});
+
 		setEmails(updatedEmails);
 	}
 		
@@ -82,10 +70,12 @@ function App() {
 			const response = await axios(
 				"https://gist.githubusercontent.com/mrchenliang/15e1989583fd6e6e04e1c49287934c91/raw/ed03cfea1e2edb0303543d2908cd7429ed75580d/email.json"
 			);
+
 			const emailsWithDeleted = response.data.map(email => ({
 				...email,
 				deleted: false
 			}));
+
 			setEmails(emailsWithDeleted);
 		}
 		fetchEmails();
