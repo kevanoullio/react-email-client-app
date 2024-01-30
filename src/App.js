@@ -6,33 +6,58 @@ import EmailList from "./components/emailList/emailList.component";
 import Email from "./components/email/email.component";
 import "./App.css";
 
+/**
+ * Main App component
+ * @returns {JSX.Element} App component
+ */
 function App() {
-	const [view, setView] = useState("inbox");
+	const [view, setView] = useState("inbox"); // Set default view to inbox
 	const [emails, setEmails] = useState([]);
 	const [filteredEmails, setFilteredEmails] = useState([]);
 	const [selectedEmail, setSelectedEmail] = useState(null);
 	const [searchInput, setSearchInput] = useState("");
 
-	const onButtonClick = (view) => {
+	/**
+	 * Function to handle view button click
+	 * @param {String} view - String representing the view
+	 */
+	const onViewButtonClick = (view) => {
 		setView(view);
-	};
+	}
 
+	/**
+	 * Function to handle email selection
+	 * @param {Object} email - Object representing the email
+	 */
 	const onSelectEmail = (email) => {
 		setSelectedEmail(email);
+		markAsRead(email.id);
 	};
 
-	function markAsRead(emailId) {
+	/**
+	 * Function to mark email as read
+	 * @param {String} emailId - String representing the email id
+	 */
+	const markAsRead = (emailId) => {
 		setEmails(emails.map(email => 
 			email.id === emailId ? { ...email, read: true } : email
 		));
 	}
-	  
-	function markAsUnread(emailId) {
+	
+	/**
+	 * Function to mark email as unread
+	 * @param {String} emailId - String representing the email id
+	 */
+	const markAsUnread = (emailId) => {
 		setEmails(emails.map(email => 
 			email.id === emailId ? { ...email, read: false } : email
-		));
+			));
 	}
 
+	/**
+	 * Function to delete email
+	 * @param {String} id - String representing the email id
+	 */
 	const deleteEmail = (id) => {
 		const updatedEmails = emails.map(email => {
 			if (email.id === id) {
@@ -47,6 +72,10 @@ function App() {
 		setEmails(updatedEmails);
 	}
 
+	/**
+	 * Function to restore email from deleted state
+	 * @param {String} id - String representing the email id
+	 */
 	const restoreEmail = (id) => {
 		const updatedEmails = emails.map(email => {
 			if (email.id === id) {
@@ -60,11 +89,19 @@ function App() {
 
 		setEmails(updatedEmails);
 	}
-		
-	const handleChange = e => {
+
+	/**
+	 * Function to handle search input change
+	 * @param {Object} e - Object representing the event
+	 */
+	const handleSearchInputChange = e => {
 		setSearchInput(e.target.value)
+		console.log("Type: ", typeof e);
 	};
 
+	/**
+	 * Fetch emails from the API
+	 */
 	useEffect(() => {
 		const fetchEmails = async () => {
 			const response = await axios(
@@ -73,6 +110,7 @@ function App() {
 
 			const emailsWithDeleted = response.data.map(email => ({
 				...email,
+				read: email.read === "true",
 				deleted: false
 			}));
 
@@ -81,6 +119,9 @@ function App() {
 		fetchEmails();
 	}, []);
 
+	/**
+	 * Filter emails based on search input and view
+	 */
 	useEffect(() => {
 		let filtered = emails;
 
@@ -99,6 +140,9 @@ function App() {
 		setFilteredEmails(filtered);
 	}, [emails, searchInput, view]);
 
+	/**
+	 * Return the main App component
+	 */
 	return (
 		<body>
 			<header>
@@ -106,13 +150,13 @@ function App() {
 			</header>
 			<main>
 				<section className="App-sidebar">
-					<Sidebar onButtonClick={onButtonClick} />
+					<Sidebar onButtonClick={onViewButtonClick} />
 				</section>
 				<section className="App-email-index">
 					<SearchBar
 						className="App-search-bar"
 						placeholder="Search for emails"
-						handleInput={handleChange}
+						handleInput={handleSearchInputChange}
 						handleChange={(e) => console.log(e.target.value)}
 					/>
 					<EmailList 
