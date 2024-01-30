@@ -1,7 +1,6 @@
 # React Email Client Preview
 <img src="react_email_client_preview.png" alt="Screenshot Preview of the React Email Client WebApp."/>
 <br/>
-<br/>
 
 # Getting Started with Create React App
 

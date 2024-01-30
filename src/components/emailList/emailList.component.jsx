@@ -3,7 +3,13 @@ import "./emailList.styles.css";
 
 /**
  * Function to render the EmailList component
- * @param {*} props - An objects representing the component properties
+ * @param {Object} emails - Object representing the emails
+ * @param {String} view - String representing the view
+ * @param {Function} onSelectEmail - Function to select an email
+ * @param {Function} markAsRead - Function to mark an email as read
+ * @param {Function} markAsUnread - Function to mark an email as unread
+ * @param {Function} deleteEmail - Function to delete an email
+ * @param {Function} restoreEmail - Function to restore an email
  * @returns The EmailList component
  */
 const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, deleteEmail, restoreEmail }) => {
@@ -29,7 +35,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
      */
     return (
         <div id="email-list">
-            {filteredEmails.map(email => (
+            {filteredEmails.map(email => ( // Map through the emails and render the email list
                 <div
                     id="email-list-item"
                     key={email.id}
@@ -45,7 +51,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                         <div id="email-address">Address: {email.address}</div>
                         <div id="email-timestamp">Time: {email.time}</div>
                     </div>
-                    {email.read ? (
+                    {email.read ? ( // If the email is read, display the unread icon
                         <img
                             id="unread"
                             src="/assets/icons/email-unread-icon.png"
@@ -55,7 +61,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                                 markAsUnread(email.id);
                             }}
                         />
-                    ) : (
+                    ) : ( // If the email is unread, display the read icon
                         <img
                             id="read"
                             src="/assets/icons/email-read-icon.png"
@@ -66,7 +72,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                             }} 
                         />
                     )}
-                    {email.deleted ? (
+                    {email.deleted ? ( // If the email is deleted, display the restore icon
                         <img 
                             id="restore-email" 
                             src="/assets/icons/restore-email-icon.png" 
@@ -76,7 +82,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                                 restoreEmail(email.id);
                             }}
                         />
-                    ) : (
+                    ) : ( // If the email is not deleted, display the trash can icon
                         <img 
                             id="trash-can" 
                             src="/assets/icons/trash-can-icon.png" 
