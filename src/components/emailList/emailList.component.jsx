@@ -54,7 +54,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                     {email.read ? ( // If the email is read, display the unread icon
                         <img
                             id="unread"
-                            src="/assets/icons/email-unread-icon.png"
+                            src={process.env.PUBLIC_URL + "/assets/icons/email-unread-icon.png"}
                             alt="email unread icon"
                             onClick={(e) => {
                                 e.stopPropagation(); // Prevent making the email item active onClick
@@ -64,7 +64,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                     ) : ( // If the email is unread, display the read icon
                         <img
                             id="read"
-                            src="/assets/icons/email-read-icon.png"
+                            src={process.env.PUBLIC_URL + "/assets/icons/email-read-icon.png"}
                             alt="email read icon"
                             onClick={(e) => {
                                 e.stopPropagation(); // Prevent making the email item active onClick
@@ -75,7 +75,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                     {email.deleted ? ( // If the email is deleted, display the restore icon
                         <img 
                             id="restore-email" 
-                            src="/assets/icons/restore-email-icon.png" 
+                            src={process.env.PUBLIC_URL + "/assets/icons/restore-email-icon.png"}
                             alt="restore email icon" 
                             onClick={(e) => {
                                 e.stopPropagation(); // Prevent making the email item active onClick
@@ -85,7 +85,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                     ) : ( // If the email is not deleted, display the trash can icon
                         <img 
                             id="trash-can" 
-                            src="/assets/icons/trash-can-icon.png" 
+                            src={process.env.PUBLIC_URL + "/assets/icons/trash-can-icon.png"}
                             alt="trash can icon" 
                             onClick={(e) => {
                                 e.stopPropagation(); // Prevent making the email item active onClick
