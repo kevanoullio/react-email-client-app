@@ -96,7 +96,6 @@ function App() {
 	 */
 	const handleSearchInputChange = e => {
 		setSearchInput(e.target.value)
-		console.log("Type: ", typeof e);
 	};
 
 	/**

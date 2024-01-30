@@ -1,19 +1,32 @@
 import React, { useState } from "react";
 import "./emailList.styles.css";
 
+/**
+ * Function to render the EmailList component
+ * @param {*} props - An objects representing the component properties
+ * @returns The EmailList component
+ */
 const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, deleteEmail, restoreEmail }) => {
     const filteredEmails = emails.filter(email => email.deleted === (view === "inbox" ? false : true));
     const [activeEmail, setActiveEmail] = useState(null);
 
-    const handleClick = (email) => {
+    /**
+     * Function to handle the click event
+     * @param {Object} email - Object representing the email
+     */
+    const handleEmailClick = (email) => {
         onSelectEmail(email);
         setActiveEmail(email.id);
     };
 
+    // If no emails are selected, return a placeholder message
     if (!emails) {
         return <div>No email selected...</div>;
     }
 
+    /**
+     * Return the EmailList component
+     */
     return (
         <div id="email-list">
             {filteredEmails.map(email => (
@@ -21,7 +34,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                     id="email-list-item"
                     key={email.id}
                     className={`email-item ${activeEmail === email.id ? "active" : ""} ${!email.read ? "unread" : ""}`}
-                    onClick={() => handleClick(email)}
+                    onClick={() => handleEmailClick(email)}
                 >
                     <div 
                         id="email-details" key={email.id}
