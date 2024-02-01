@@ -72,7 +72,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                             }} 
                         />
                     )}
-                    {email.deleted ? ( // If the email is deleted, display the restore icon
+                    {email.tag === "deleted" ? ( // If the email is deleted, display the restore icon
                         <img 
                             id="restore-email" 
                             src={process.env.PUBLIC_URL + "/assets/icons/restore-email-icon.png"}

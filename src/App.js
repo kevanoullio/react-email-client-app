@@ -59,17 +59,9 @@ function App() {
 	 * @param {String} id - String representing the email id
 	 */
 	const deleteEmail = (id) => {
-		const updatedEmails = emails.map(email => {
-			if (email.id === id) {
-				return {
-					...email,
-					deleted: true
-				};
-			}
-			return email;
-		});
-
-		setEmails(updatedEmails);
+		setEmails(emails.map(email =>
+			email.id === id ? { ...email, tag: "deleted" } : email
+		));
 	}
 
 	/**
@@ -77,17 +69,9 @@ function App() {
 	 * @param {String} id - String representing the email id
 	 */
 	const restoreEmail = (id) => {
-		const updatedEmails = emails.map(email => {
-			if (email.id === id) {
-				return {
-					...email,
-					deleted: false
-				};
-			}
-			return email;
-		});
-
-		setEmails(updatedEmails);
+		setEmails(emails.map(email =>
+			email.id === id ? { ...email, tag: "inbox" } : email
+		));
 	}
 
 	/**
@@ -107,13 +91,13 @@ function App() {
 				"https://gist.githubusercontent.com/mrchenliang/15e1989583fd6e6e04e1c49287934c91/raw/ed03cfea1e2edb0303543d2908cd7429ed75580d/email.json"
 			);
 
-			const emailsWithDeleted = response.data.map(email => ({
+			const emailsInitialized = response.data.map(email => ({
 				...email,
 				read: email.read === "true",
-				deleted: false
+				deleted: email.tag === "deleted"
 			}));
 
-			setEmails(emailsWithDeleted);
+			setEmails(emailsInitialized);
 		}
 		fetchEmails();
 	}, []);
@@ -131,9 +115,9 @@ function App() {
 		}
 
 		if (view === "inbox") {
-			filtered = filtered.filter(email => !email.deleted);
+			filtered = filtered.filter(email => email.tag === "inbox");
 		} else {
-			filtered = filtered.filter(email => email.deleted);
+			filtered = filtered.filter(email => email.tag === "deleted");
 		}
 
 		setFilteredEmails(filtered);
