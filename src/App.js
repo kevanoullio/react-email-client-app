@@ -40,7 +40,7 @@ function App() {
 	 */
 	const markAsRead = (emailId) => {
 		setEmails(emails.map(email => 
-			email.id === emailId ? { ...email, read: true } : email
+			email.id === emailId ? { ...email, read: "true" } : email
 		));
 	}
 	
@@ -50,7 +50,7 @@ function App() {
 	 */
 	const markAsUnread = (emailId) => {
 		setEmails(emails.map(email => 
-			email.id === emailId ? { ...email, read: false } : email
+			email.id === emailId ? { ...email, read: "false" } : email
 			));
 	}
 
@@ -91,14 +91,9 @@ function App() {
 				"https://gist.githubusercontent.com/mrchenliang/15e1989583fd6e6e04e1c49287934c91/raw/ed03cfea1e2edb0303543d2908cd7429ed75580d/email.json"
 			);
 
-			const emailsInitialized = response.data.map(email => ({
-				...email,
-				read: email.read === "true",
-				deleted: email.tag === "deleted"
-			}));
-
-			setEmails(emailsInitialized);
+			setEmails(response.data);
 		}
+		
 		fetchEmails();
 	}, []);
 
@@ -144,7 +139,7 @@ function App() {
 					/>
 					<EmailList 
 						className="App-email-list"
-						view={view} emails={filteredEmails}
+						emails={filteredEmails}
 						onSelectEmail={onSelectEmail}
 						markAsRead={markAsRead}
 						markAsUnread={markAsUnread}

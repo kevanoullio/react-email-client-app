@@ -12,8 +12,7 @@ import "./emailList.styles.css";
  * @param {Function} restoreEmail - Function to restore an email
  * @returns The EmailList component
  */
-const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, deleteEmail, restoreEmail }) => {
-    const filteredEmails = emails.filter(email => email.deleted === (view === "inbox" ? false : true));
+const EmailList = ({ emails, onSelectEmail, markAsRead, markAsUnread, deleteEmail, restoreEmail }) => {
     const [activeEmail, setActiveEmail] = useState(null);
 
     /**
@@ -35,11 +34,11 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
      */
     return (
         <div id="email-list">
-            {filteredEmails.map(email => ( // Map through the emails and render the email list
+            {emails.map(email => ( // Map through the emails and render the email list
                 <div
                     id="email-list-item"
                     key={email.id}
-                    className={`email-item ${activeEmail === email.id ? "active" : ""} ${!email.read ? "unread" : ""}`}
+                    className={`email-item ${activeEmail === email.id ? "active" : ""} ${email.read === "true" ? "read" : "unread"}`}
                     onClick={() => handleEmailClick(email)}
                 >
                     <div 
@@ -51,7 +50,7 @@ const EmailList = ({ emails, view, onSelectEmail, markAsRead, markAsUnread, dele
                         <div id="email-address">Address: {email.address}</div>
                         <div id="email-timestamp">Time: {email.time}</div>
                     </div>
-                    {email.read ? ( // If the email is read, display the unread icon
+                    {email.read === "true" ? ( // If the email is read, display the unread icon
                         <img
                             id="unread"
                             src={process.env.PUBLIC_URL + "/assets/icons/email-unread-icon.png"}
